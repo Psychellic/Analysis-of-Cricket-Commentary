@@ -50,7 +50,7 @@ for filename in os.listdir(input_dir):
 
 # Create a list of tuples with (word, frequency, files)
 data = [
-    (word, freq, '"{}"'.format('", "'.join(word_files[word])))
+    (word, freq, '{}'.format(', '.join(word_files[word])))
     for word, freq in word_freq.items()
 ]
 
