@@ -40,6 +40,9 @@ We use the [Cricket Scorecard and Commentary Dataset](https://www.kaggle.com/dat
 
 ### RNN Code Snippet
 
+![63b413dc18abfa2aa3cb8ab9_62ea833ddbd70fadffa8ac7f_HERO%20simple%20recurrent%20neural%20network](https://github.com/Psychellic/Analysis-of-Cricket-Commentary/assets/148717275/82cad864-1523-44aa-9da1-725e6f412e94)
+
+
 ```python
 
 # Create the RNN model
