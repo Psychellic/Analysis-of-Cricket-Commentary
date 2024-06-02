@@ -38,6 +38,32 @@ We use the [Cricket Scorecard and Commentary Dataset](https://www.kaggle.com/dat
 - **Sentiment Analysis:** To gauge the excitement level of each commentary line.
 - **Named Entity Recognition (NER):** To extract players' names, actions, and other important entities from the commentary.
 
+### RNN Code Snippet
+
+```python
+
+# Create the RNN model
+model = Sequential(
+    [
+        Embedding(len(tokenizer.word_index) + 1, 128, input_length=max_length),
+        LSTM(128, return_sequences=True),
+        Dropout(0.2),
+        LSTM(64),
+        Dropout(0.2),
+        Dense(64, activation="relu"),
+        Dense(32, activation="relu"),
+        Dense(2, activation="linear"),
+    ]
+)
+
+```
+
+---
+
+### Explanation
+
+In our cricket commentary RNN code, we utilize Recurrent Neural Networks (RNNs), which excel at understanding sequential data, akin to reading a story or watching a video. The RNN learns from the order of events, much like recalling earlier parts of a story to understand new information. Applied to cricket commentary, the RNN analyzes each line, discerning patterns to predict outcomes which are runs and wickets. By training the model with organized data, we enable it to interpret and anticipate cricket events accurately, providing valuable insights into match dynamics and serving as a predictive tool for future outcomes.
+
 #### Identifying Key Overs
 
 1. Aggregate the number of wickets per over.
@@ -74,103 +100,13 @@ Feel free to implement and extend this project to suit your specific needs. Happ
 
 ### Code and Data
 
-You can find the complete code and dataset used in this project on [GitHub](https://github.com/yourusername/cricket-commentary-analysis).
+You can find the complete code and dataset used in this project on [GitHub](https://github.com/Psychellic/Analysis-of-Cricket-Commentary).
 
 ---
 
-By following the steps outlined in this blog, you can create a powerful tool to analyze cricket commentary and gain deeper insights into the game. Whether you're a cricket analyst, commentator, or just a passionate fan, this project will enhance your understanding and enjoyment of the sport.
+By following the steps outlined in this video, you can create a powerful tool to analyze cricket commentary and gain deeper insights into the game. Whether you're a cricket analyst, commentator, or just a passionate fan, this project will enhance your understanding and enjoyment of the sport.
 
 ---
-
-### RNN Code Explanation
-
-```python
-
-# Create the RNN model
-model = Sequential(
-    [
-        Embedding(len(tokenizer.word_index) + 1, 128, input_length=max_length),
-        LSTM(128, return_sequences=True),
-        Dropout(0.2),
-        LSTM(64),
-        Dropout(0.2),
-        Dense(64, activation="relu"),
-        Dense(32, activation="relu"),
-        Dense(2, activation="linear"),
-    ]
-)
-
-```
-
----
-
-### Explanation of the RNN Code
-
-In the given RNN code, the primary goal is to predict the number of runs and wickets based on cricket commentary. Let's break down the code step-by-step:
-
-1. **Import Libraries and Load Data:**
-
-2. **Preprocess the Data:**
-
-3. **Tokenize the Commentary:**
-   ```python
-   # Tokenize the commentary
-   tokenizer = Tokenizer()
-   tokenizer.fit_on_texts(commentary)
-   sequences = tokenizer.texts_to_sequences(commentary)
-   ```
-
-   The `Tokenizer` is used to convert the text data into sequences of integers.
-
-4. **Pad the Sequences:**
-
-   The sequences are padded to ensure uniform input length for the RNN.
-
-5. **Split the Data:**
-   The data is split into training and testing sets.
-
-6. **Create the RNN Model:**
-
-   An RNN model is created with an Embedding layer, LSTM layers, Dropout layers to prevent overfitting, and Dense layers for output.
-
-7. **Compile the Model:**
-   The model is compiled using the Adam optimizer and mean squared error (MSE) loss function.
-
-8. **Prepare the Target Variables:**
-   The runs and wickets are combined into a single target variable.
-
-9. **Train the Model:**
-   The model is trained using the training data.
-
-10. **Evaluate the Model:**
-   The model is evaluated on the test data, and the accuracy and precision for runs and wickets predictions are calculated.
-
-11. **Save the Trained Model:**
-    The trained model is saved to disk using the pickle module.
-
-12. **Make Predictions on Hard-Coded Inputs:**
-    The model is used to make predictions on hard-coded commentary inputs to demonstrate its capability to predict runs and wickets based on the text commentary.
-
-In the final section of the RNN code, we utilize the trained model to make predictions on new, hard-coded commentary inputs.
-
-13. **Making Predictions on Hard-Coded Inputs:**
-    # Hard-coded commentary input
-    commentary_input = "taken! Yasir Shah strikes. Flatter trajectory outside off, gets it to turn a touch but more importantly, gets some extra bounce. Smith sees something short and goes back to cut. The extra bounce is responsible for a thick outside edge. Sarfraz hangs onto a quality reflex catch, had his gloves in the right spot."
-    commentary_sequence = tokenizer.texts_to_sequences([commentary_input])
-    commentary_padded = pad_sequences(commentary_sequence, maxlen=max_length)
-
-    prediction = model.predict(commentary_padded)
-    predicted_runs = np.round(prediction[:, 0]).astype(int)[0]
-    predicted_wickets = np.round(prediction[:, 1]).astype(int)[0]
-
-    print("Predicted Runs:", predicted_runs)
-    print("Predicted Wickets:", predicted_wickets)
-    ```
-
-    - **Input Commentary:** This commentary text describes a ball that resulted in a wicket.
-    - **Tokenization and Padding:** The text is tokenized and padded similarly.
-    - **Prediction:** The model predicts the number of runs and wickets for this commentary line.
-    - **Output:** The predicted runs and wickets are printed, demonstrating the model's ability to interpret and predict the outcome of the commentary.
 
 ### Conclusion
 
@@ -182,11 +118,6 @@ This project showcases how Natural Language Processing (NLP) can be effectively 
 2. **Real-Time Analysis:** Developing a real-time analysis tool to assist commentators during live matches.
 3. **Enhanced Sentiment Analysis:** Integrating more sophisticated sentiment analysis techniques to capture the excitement levels more accurately.
 4. **Visualization Tools:** Creating visualization tools to graphically represent the key overs and highlights.
-
-### Code and Data
-
-You can find the complete code and dataset used in this project on [GitHub](https://github.com/yourusername/cricket-commentary-analysis).
-
 ---
 
 By following the steps outlined in this blog, you can create a powerful tool to analyze cricket commentary and gain deeper insights into the game. Whether you're a cricket analyst, commentator, or just a passionate fan, this project will enhance your understanding and enjoyment of the sport.
