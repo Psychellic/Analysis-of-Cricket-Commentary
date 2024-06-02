@@ -56,19 +56,29 @@ Sample Data:
 
 We will use several NLP techniques to analyze the commentary text and extract key information.
 
-# Text Preprocessing
+# Recurrent Neural Network
+```
+model = Sequential(
+    [
+        Embedding(len(tokenizer.word_index) + 1, 128, input_length=max_length),
+        LSTM(128, return_sequences=True),
+        Dropout(0.2),
+        LSTM(64),
+        Dropout(0.2),
+        Dense(64, activation="relu"),
+        Dense(32, activation="relu"),
+        Dense(2, activation="linear"),
+    ]
+)
+```
 
-1. Tokenization: Splitting the commentary text into individual words.
-2. Stopword Removal: Removing common words that do not contribute to the analysis (e.g., "the", "is", "at").
-3. Lemmatization: Reducing words to their base or root form.
+
+
 
 # Sentiment Analysis
 
 Applying sentiment analysis to determine the excitement level of each commentary line, helping to identify interesting points.
 
-# Named Entity Recognition (NER)
-
-Using NER to identify players' names, actions, and other important entities in the commentary.
 
 # 5. Identifying Key Overs
 
