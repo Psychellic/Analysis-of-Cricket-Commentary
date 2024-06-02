@@ -22,8 +22,15 @@ Check out the live demo of our Cricket Commentary Analysis tool: [Cricket Commen
 
 ### 2. Requirements
 '''
-python3.1.2,nltk,numpy,tensorflow,pytorch,sklearn,transformers
+python3.1.2
+nltk
+numpy
+tensorflow
+pytorch
+sklearn
+transformers
 '''
+
 These python libraries are required.
 
 ### 3. Order of Execution
