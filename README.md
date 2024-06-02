@@ -1,48 +1,60 @@
-# Analyzing Cricket Commentary Using NLP: Identifying Key Overs and Highlights
+### Analyzing Cricket Commentary Using NLP: Identifying Key Overs and Highlights
 
 Cricket is a game of moments—those crucial overs that can turn the tide of the match. In this blog, I will walk you through an NLP project designed to analyze cricket commentary and extract key insights. By inputting the overs and runs of a match, the program identifies the top 10 overs with the highest wickets and highlights interesting events that occurred in those overs. This can be a powerful tool for cricket analysts, commentators, and fans who want to delve deeper into the game's intricacies.
 
-# Table of Contents
-1. Introduction
-2. Project Overview
-3. Data Collection and Preparation
-4. NLP Techniques for Commentary Analysis
-5. Identifying Key Overs
-6. Highlighting Interesting Points
-7. Conclusion
+#### Table of Contents
+1. Demo
+2. Problem Statement
+3. Motivation
+4. Approach
+5. Results/Discussion
+6. Conclusion
 
 ---
 
-# 1. Introduction
+### 1. Demo
 
-Cricket commentary, whether text or audio, is rich in details that can provide deep insights into the flow of the game. By leveraging Natural Language Processing (NLP), we can analyze this commentary to extract meaningful patterns and highlight the most critical moments of a match.
+Check out the live demo of our Cricket Commentary Analysis tool: [Cricket Commentary Analyzer Demo](https://example.com/demo)
 
-# 2. Project Overview
+---
 
-The goal of this project is to analyze cricket commentary to:
-- Identify the top 10 overs with the highest number of wickets.
-- Highlight interesting points that occurred in those overs.
+### 2. Problem Statement
 
-We will achieve this by:
-- Collecting and preparing the commentary data.
-- Applying NLP techniques to process the text.
-- Extracting and analyzing the overs with the highest wickets.
-- Highlighting key events in those overs.
+Cricket matches are filled with critical moments that can drastically influence the outcome of the game. Identifying these moments from ball-by-ball commentary can provide valuable insights. The problem we aim to solve is to analyze cricket commentary to identify the top 10 overs with the highest number of wickets and highlight interesting points that occurred during these overs.
 
-# 3. Data Collection and Preparation
+### 3. Motivation
 
-# Data Collection
+Cricket analysts, commentators, and fans often miss out on the finer details of a match's turning points. By leveraging Natural Language Processing (NLP), we can extract these moments from the commentary, providing a deeper understanding of the game. This project aims to enhance the viewing experience and offer a tool for in-depth match analysis.
 
-For this project, we use a dataset from Kaggle, the Cricket Scorecard and Commentary Dataset(https://www.kaggle.com/datasets/raghuvansht/cricket-scorecard-and-commentary-dataset). This dataset includes detailed ball-by-ball commentary for various cricket matches, which is essential for our analysis.
+### 4. Approach
 
-#### Data Structure
+#### Data Collection and Preparation
 
-The dataset includes:
-- Over number
-- Ball number
-- Commentary text
-- Wickets information
-- Runs scored
+We use the [Cricket Scorecard and Commentary Dataset](https://www.kaggle.com/datasets/raghuvansht/cricket-scorecard-and-commentary-dataset) from Kaggle, which includes detailed ball-by-ball commentary for various cricket matches.
+
+#### NLP Techniques for Commentary Analysis
+
+- **Text Preprocessing:** Tokenization, stopword removal, and lemmatization to clean and prepare the commentary text.
+- **Sentiment Analysis:** To gauge the excitement level of each commentary line.
+- **Named Entity Recognition (NER):** To extract players' names, actions, and other important entities from the commentary.
+
+#### Identifying Key Overs
+
+1. Aggregate the number of wickets per over.
+2. Sort the overs by the number of wickets in descending order.
+3. Select the top 10 overs.
+
+#### Highlighting Interesting Points
+
+1. Filter the commentary data for the top 10 overs.
+2. Apply sentiment analysis to identify lines with high excitement levels.
+3. Use NER to extract and highlight key events.
+
+### 5. Results/Discussion
+
+By analyzing the commentary data, we successfully identified the top 10 overs with the highest number of wickets. For each of these overs, we highlighted the most exciting moments, providing insights into how the match unfolded. This analysis not only helps in understanding past matches but also serves as a valuable resource for live commentary and strategic planning.
+
+Example Output:
 
 Sample Data:
 
@@ -52,12 +64,29 @@ Sample Data:
 | 1    | 1.2  | "Bowler X to Batsman Y, OUT! Caught by Z!"       | 1       | 0    |
 | ...  | ...  | ...                                              | ...     | ...  |
 
-# 4. NLP Techniques for Commentary Analysis
+### 6. Conclusion
 
-We will use several NLP techniques to analyze the commentary text and extract key information.
+This project demonstrates the power of NLP in sports analytics. By analyzing cricket commentary, we can identify key moments and gain deeper insights into the game. This tool is beneficial for analysts, commentators, and fans who wish to enhance their understanding and enjoyment of cricket. 
 
-# Recurrent Neural Network
-```
+Feel free to implement and extend this project to suit your specific needs. Happy analyzing!
+
+---
+
+### Code and Data
+
+You can find the complete code and dataset used in this project on [GitHub](https://github.com/yourusername/cricket-commentary-analysis).
+
+---
+
+By following the steps outlined in this blog, you can create a powerful tool to analyze cricket commentary and gain deeper insights into the game. Whether you're a cricket analyst, commentator, or just a passionate fan, this project will enhance your understanding and enjoyment of the sport.
+
+---
+
+### RNN Code Explanation
+
+```python
+
+# Create the RNN model
 model = Sequential(
     [
         Embedding(len(tokenizer.word_index) + 1, 128, input_length=max_length),
@@ -70,44 +99,100 @@ model = Sequential(
         Dense(2, activation="linear"),
     ]
 )
+
 ```
 
+---
 
+### Explanation of the RNN Code
 
+In the given RNN code, the primary goal is to predict the number of runs and wickets based on cricket commentary. Let's break down the code step-by-step:
 
-# Sentiment Analysis
+1. **Import Libraries and Load Data:**
 
-Applying sentiment analysis to determine the excitement level of each commentary line, helping to identify interesting points.
+2. **Preprocess the Data:**
 
+3. **Tokenize the Commentary:**
+   ```python
+   # Tokenize the commentary
+   tokenizer = Tokenizer()
+   tokenizer.fit_on_texts(commentary)
+   sequences = tokenizer.texts_to_sequences(commentary)
+   ```
 
-# 5. Identifying Key Overs
+   The `Tokenizer` is used to convert the text data into sequences of integers.
 
-To identify the top 10 overs with the highest wickets, we will:
+4. **Pad the Sequences:**
 
-1. Aggregate the number of wickets per over.
-2. Sort the overs by the number of wickets in descending order.
-3. Select the top 10 overs.
+   The sequences are padded to ensure uniform input length for the RNN.
 
-# 6. Highlighting Interesting Points
+5. **Split the Data:**
+   The data is split into training and testing sets.
 
-To highlight interesting points in the top 10 overs, we will:
+6. **Create the RNN Model:**
 
-1. Filter the commentary data for the top 10 overs.
-2. Apply sentiment analysis to identify lines with high excitement levels.
-3. Use NER to extract and highlight key events.
+   An RNN model is created with an Embedding layer, LSTM layers, Dropout layers to prevent overfitting, and Dense layers for output.
 
-# 7. Conclusion
+7. **Compile the Model:**
+   The model is compiled using the Adam optimizer and mean squared error (MSE) loss function.
 
-By using NLP techniques, we can effectively analyze cricket commentary to identify key moments in a match. This project demonstrates how data science can be applied to sports analytics, providing valuable insights and enhancing the viewing experience for fans.
+8. **Prepare the Target Variables:**
+   The runs and wickets are combined into a single target variable.
+
+9. **Train the Model:**
+   The model is trained using the training data.
+
+10. **Evaluate the Model:**
+   The model is evaluated on the test data, and the accuracy and precision for runs and wickets predictions are calculated.
+
+11. **Save the Trained Model:**
+    The trained model is saved to disk using the pickle module.
+
+12. **Make Predictions on Hard-Coded Inputs:**
+    The model is used to make predictions on hard-coded commentary inputs to demonstrate its capability to predict runs and wickets based on the text commentary.
+
+In the final section of the RNN code, we utilize the trained model to make predictions on new, hard-coded commentary inputs.
+
+13. **Making Predictions on Hard-Coded Inputs:**
+    # Hard-coded commentary input
+    commentary_input = "taken! Yasir Shah strikes. Flatter trajectory outside off, gets it to turn a touch but more importantly, gets some extra bounce. Smith sees something short and goes back to cut. The extra bounce is responsible for a thick outside edge. Sarfraz hangs onto a quality reflex catch, had his gloves in the right spot."
+    commentary_sequence = tokenizer.texts_to_sequences([commentary_input])
+    commentary_padded = pad_sequences(commentary_sequence, maxlen=max_length)
+
+    prediction = model.predict(commentary_padded)
+    predicted_runs = np.round(prediction[:, 0]).astype(int)[0]
+    predicted_wickets = np.round(prediction[:, 1]).astype(int)[0]
+
+    print("Predicted Runs:", predicted_runs)
+    print("Predicted Wickets:", predicted_wickets)
+    ```
+
+    - **Input Commentary:** This commentary text describes a ball that resulted in a wicket.
+    - **Tokenization and Padding:** The text is tokenized and padded similarly.
+    - **Prediction:** The model predicts the number of runs and wickets for this commentary line.
+    - **Output:** The predicted runs and wickets are printed, demonstrating the model's ability to interpret and predict the outcome of the commentary.
+
+### Conclusion
+
+This project showcases how Natural Language Processing (NLP) can be effectively applied to sports commentary analysis. By leveraging an RNN model, we can predict significant events in cricket matches from textual commentary, providing valuable insights for analysts, commentators, and fans. This tool enhances the understanding and enjoyment of the game by highlighting key moments and identifying turning points in matches.
+
+### Future Enhancements
+
+1. **Expand Dataset:** Including more matches and a diverse set of commentaries to improve model accuracy.
+2. **Real-Time Analysis:** Developing a real-time analysis tool to assist commentators during live matches.
+3. **Enhanced Sentiment Analysis:** Integrating more sophisticated sentiment analysis techniques to capture the excitement levels more accurately.
+4. **Visualization Tools:** Creating visualization tools to graphically represent the key overs and highlights.
+
+### Code and Data
+
+You can find the complete code and dataset used in this project on [GitHub](https://github.com/yourusername/cricket-commentary-analysis).
+
+---
+
+By following the steps outlined in this blog, you can create a powerful tool to analyze cricket commentary and gain deeper insights into the game. Whether you're a cricket analyst, commentator, or just a passionate fan, this project will enhance your understanding and enjoyment of the sport.
 
 Feel free to implement and extend this project to suit your specific needs. Happy analyzing!
 
-----------
+---
 
-# Code and Data
-
-You can find the complete code and dataset used in this project on GitHub(https://github.com/Psychellic/Analysis-of-Cricket-Commentary).
-
-----------
-
-By following the steps outlined in this blog, you can create a powerful tool to analyze cricket commentary and gain deeper insights into the game. Whether you're a cricket analyst, commentator, or just a passionate fan, this project will enhance your understanding and enjoyment of the sport.
+**Note:** This project was developed using the Cricket Scorecard and Commentary Dataset from Kaggle. Special thanks to the creators of the dataset for making this possible.
