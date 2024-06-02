@@ -27,12 +27,13 @@ python3.1.2,nltk,numpy,tensorflow,pytorch,sklearn,transformers
 These python libraries are required.
 
 ### 3. Order of Execution
-'''
-1)Data_ext.py
-2)rnn.py
-3)input.py
-4)final.py
-'''
+### List of Files
+
+1. `Data_ext.py`
+2. `rnn.py`
+3. `input.py`
+4. `final.py`
+
 The first three files are present in the code directory and the last file is present in the main file.
 
 ### 4. Problem Statement
