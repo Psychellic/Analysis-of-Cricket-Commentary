@@ -4,11 +4,12 @@ Cricket is a game of moments—those crucial overs that can turn the tide of the
 
 #### Table of Contents
 1. Demo
-2. Problem Statement
-3. Motivation
-4. Approach
-5. Results/Discussion
-6. Conclusion
+2. Requirements
+3. Problem Statement
+4. Motivation
+5. Approach
+6. Results/Discussion
+7. Conclusion
 
 ---
 
@@ -18,15 +19,20 @@ Check out the live demo of our Cricket Commentary Analysis tool: [Cricket Commen
 
 ---
 
-### 2. Problem Statement
+### 2. Requirements
+python3.1.2,nltk,numpy,tensorflow,pytorch,sklearn,transformers
+
+These python libraries are required.
+
+### 3. Problem Statement
 
 Cricket matches are filled with critical moments that can drastically influence the outcome of the game. Identifying these moments from ball-by-ball commentary can provide valuable insights. The problem we aim to solve is to analyze cricket commentary to identify the top 10 overs with the highest number of wickets and highlight interesting points that occurred during these overs.
 
-### 3. Motivation
+### 4. Motivation
 
 Cricket analysts, commentators, and fans often miss out on the finer details of a match's turning points. By leveraging Natural Language Processing (NLP), we can extract these moments from the commentary, providing a deeper understanding of the game. This project aims to enhance the viewing experience and offer a tool for in-depth match analysis.
 
-### 4. Approach
+### 5. Approach
 
 #### Data Collection and Preparation
 
@@ -41,6 +47,7 @@ We use the [Cricket Scorecard and Commentary Dataset](https://www.kaggle.com/dat
 ### RNN Code Snippet
 
 ![63b413dc18abfa2aa3cb8ab9_62ea833ddbd70fadffa8ac7f_HERO%20simple%20recurrent%20neural%20network](https://github.com/Psychellic/Analysis-of-Cricket-Commentary/assets/148717275/82cad864-1523-44aa-9da1-725e6f412e94)
+![63b413dc18abfa2aa3cb8ab9_62ea833ddbd70fadffa8ac7f_HERO simple recurrent neural network](https://github.com/Psychellic/Analysis-of-Cricket-Commentary/assets/148717275/c976416c-bf60-41b5-a6c7-71302a271985)
 
 
 ```python
@@ -79,7 +86,7 @@ In our cricket commentary RNN code, we utilize Recurrent Neural Networks (RNNs),
 2. Apply sentiment analysis to identify lines with high excitement levels.
 3. Use NER to extract and highlight key events.
 
-### 5. Results/Discussion
+### 6. Results/Discussion
 
 By analyzing the commentary data, we successfully identified the top 10 overs with the highest number of wickets. For each of these overs, we highlighted the most exciting moments, providing insights into how the match unfolded. This analysis not only helps in understanding past matches but also serves as a valuable resource for live commentary and strategic planning.
 
@@ -93,7 +100,7 @@ Sample Data:
 | 1    | 1.2  | "Bowler X to Batsman Y, OUT! Caught by Z!"       | 1       | 0    |
 | ...  | ...  | ...                                              | ...     | ...  |
 
-### 6. Conclusion
+### 7. Conclusion
 
 This project demonstrates the power of NLP in sports analytics. By analyzing cricket commentary, we can identify key moments and gain deeper insights into the game. This tool is beneficial for analysts, commentators, and fans who wish to enhance their understanding and enjoyment of cricket. 
 
