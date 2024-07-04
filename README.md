@@ -22,7 +22,7 @@ Check out the demo of our Cricket Commentary Analysis tool:
 ---
 
 ### 2. Requirements
-'''
+```
 python3.12
 nltk
 numpy
@@ -30,7 +30,7 @@ tensorflow
 pytorch
 sklearn
 transformers
-'''
+```
 
 These python libraries are required.
 
